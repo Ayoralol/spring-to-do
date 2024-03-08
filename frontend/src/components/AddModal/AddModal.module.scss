@@ -58,3 +58,15 @@
     border-radius: 5px;
   }
 }
+
+@media (orientation: landscape) {
+  .wrap {
+    &__box {
+      width: 50%;
+      height: 55%;
+    }
+  }
+  .form {
+    width: 40%;
+  }
+}

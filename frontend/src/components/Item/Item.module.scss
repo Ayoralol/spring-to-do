@@ -6,46 +6,127 @@
   width: 70%;
   margin: 10px 0;
   border-radius: 10px;
+  box-shadow: 8px 8px 3px 0 rgba(0, 0, 0, 0.4);
   &__btns {
     display: flex;
     justify-content: space-around;
     width: 100%;
+    margin: 5px 0;
   }
   &__body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
-    h2 {
-      margin: 0;
+    height: 30vh;
+    &__head {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 15%;
+      &_title {
+        margin: 0;
+        width: 50%;
+        text-align: center;
+      }
+      &_category {
+        margin: 0;
+        width: 50%;
+        text-align: center;
+        text-transform: capitalize;
+      }
     }
-    p {
-      margin: 0;
+    &_content {
+      height: 70%;
+      width: 80%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 20px;
+    }
+    &_date {
+      height: 15%;
+      display: flex;
+      align-items: center;
+      &_p {
+        margin: 0;
+      }
     }
   }
 }
 
 .left {
   align-self: flex-start;
+  margin-left: 10px;
 }
 
 .right {
   align-self: flex-end;
+  margin-right: 10px;
 }
 
 .low {
-  background-color: green;
+  background-color: #bfcfb0c7;
 }
 
 .medium {
-  background-color: orange;
+  background-color: rgba(226, 218, 169, 0.685);
 }
 
 .high {
-  background-color: red;
+  background-color: rgba(196, 162, 162, 0.623);
 }
 
 .gold {
-  background-color: gold;
+  background-color: rgba(111, 181, 228, 0.288);
+}
+
+.line {
+  width: 100%;
+  height: 2px;
+
+  &.low {
+    background-color: #acbe9bce;
+  }
+  &.medium {
+    background-color: rgba(216, 207, 147, 0.658);
+  }
+  &.high {
+    background-color: rgba(196, 162, 162, 0.623);
+  }
+  &.gold {
+    background-color: rgba(126, 175, 207, 0.288);
+  }
+}
+
+.vertline {
+  width: 2px;
+  height: 100%;
+  &.low {
+    background-color: #acbe9bce;
+  }
+  &.medium {
+    background-color: rgba(216, 207, 147, 0.658);
+  }
+  &.high {
+    background-color: rgba(196, 162, 162, 0.623);
+  }
+  &.gold {
+    background-color: rgba(126, 175, 207, 0.288);
+  }
+}
+
+@media (orientation: landscape) {
+  .wrap {
+    width: 250px;
+    margin: 50px;
+  }
+  .left {
+    margin-top: 20px;
+    align-self: flex-start;
+  }
+  .right {
+    align-self: flex-start;
+  }
 }

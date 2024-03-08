@@ -10,6 +10,7 @@ import List from "./containers/List/List";
 import Button from "./components/Button/Button";
 import AddModal from "./components/AddModal/AddModal";
 import {Zoom, ToastContainer} from "react-toastify";
+import {faPlus} from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const [listItems, setListItems] = useState<ListItem[]>([]);
@@ -43,7 +44,10 @@ function App() {
     <div className={styles.app}>
       <div className={styles.top}>
         <h1>My List</h1>
-        <Button handleClick={handleClick}>Add</Button>
+        <Button
+          handleClick={handleClick}
+          icon={faPlus}
+          border={"none"}></Button>
       </div>
       <List items={listItems} fetchData={fetchData} />
       {modalOpen && <AddModal closeModal={handleClick} submit={createItem} />}

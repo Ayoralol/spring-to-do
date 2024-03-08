@@ -2,6 +2,7 @@ import {useForm} from "react-hook-form";
 import {ListItem} from "../../services/list-item-services";
 import styles from "./AddModal.module.scss";
 import Button from "../Button/Button";
+import {faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
 
 interface AddModalProps {
   closeModal: () => unknown;
@@ -38,11 +39,23 @@ const AddModal: React.FC<AddModalProps> = ({closeModal, submit, item}) => {
             {...register("category")}
             className={styles.form__drop}
             defaultValue={item?.category}>
-            <option value="coding" className={styles.form__drop_option}>
-              Coding
+            <option value="developing" className={styles.form__drop_option}>
+              Developing
             </option>
-            <option value="cats" className={styles.form__drop_option}>
-              Cats
+            <option value="work" className={styles.form__drop_option}>
+              Work
+            </option>
+            <option value="projects" className={styles.form__drop_option}>
+              Projects
+            </option>
+            <option value="shopping" className={styles.form__drop_option}>
+              Shopping
+            </option>
+            <option value="chores" className={styles.form__drop_option}>
+              Chores
+            </option>
+            <option value="general" className={styles.form__drop_option}>
+              General
             </option>
           </select>
           <select
@@ -59,10 +72,16 @@ const AddModal: React.FC<AddModalProps> = ({closeModal, submit, item}) => {
               Low
             </option>
           </select>
-          <Button handleClick={handleSubmit(onSubmit)}>Done</Button>
+          <Button
+            handleClick={handleSubmit(onSubmit)}
+            icon={faCheck}
+            border={"default"}></Button>
         </form>
       </div>
-      <Button handleClick={closeModal}>Close</Button>
+      <Button
+        handleClick={closeModal}
+        icon={faXmark}
+        border={"default"}></Button>
     </div>
   );
 };

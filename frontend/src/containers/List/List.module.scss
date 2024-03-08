@@ -6,3 +6,16 @@
   align-items: flex-start;
   overflow-y: auto;
 }
+
+@media (orientation: landscape) {
+  .list {
+    width: 80%;
+    min-height: 50%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+}

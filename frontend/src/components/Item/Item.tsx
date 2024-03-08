@@ -9,6 +9,7 @@ import {format} from "date-fns";
 import Button from "../Button/Button";
 import AddModal from "../AddModal/AddModal";
 import {useState} from "react";
+import {faCheck, faTrash, faWrench} from "@fortawesome/free-solid-svg-icons";
 
 interface ItemProps {
   item: ListItem;
@@ -18,7 +19,7 @@ interface ItemProps {
 const Item: React.FC<ItemProps> = ({item, fetchData}) => {
   const [editOpen, setEditOpen] = useState(false);
 
-  let urgency = "";
+  let urgency: string = "";
   if (!item.isDone) {
     urgency = item.urgency;
   } else {
@@ -35,8 +36,6 @@ const Item: React.FC<ItemProps> = ({item, fetchData}) => {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this item?")) {
       await deleteListItemById(item.id).then(() => fetchData());
-    } else {
-      console.log("Pussy");
     }
   };
 
@@ -62,15 +61,42 @@ const Item: React.FC<ItemProps> = ({item, fetchData}) => {
   return (
     <div className={`${styles.wrap} ${styles[urgency]} ${styles[position]}`}>
       <div className={styles.wrap__btns}>
-        {!item.isDone && <Button handleClick={handleEdit}>Edit</Button>}
-        <Button handleClick={handleDelete}>Delete</Button>
-        {!item.isDone && <Button handleClick={handleComplete}>Complete</Button>}
+        {!item.isDone && (
+          <Button
+            handleClick={handleEdit}
+            icon={faWrench}
+            border={urgency}></Button>
+        )}
+        <Button
+          handleClick={handleDelete}
+          icon={faTrash}
+          border={urgency}></Button>
+        {!item.isDone && (
+          <Button
+            handleClick={handleComplete}
+            icon={faCheck}
+            border={urgency}></Button>
+        )}
       </div>
+      <div className={`${styles.line} ${styles[urgency]}`}></div>
       <div className={styles.wrap__body}>
-        <h2>{item.title}</h2>
-        <p>{item.category}</p>
-        <p>{item.content}</p>
-        <p>Created {format(new Date(item.createdAt), "dd/MM/yy")}</p>
+        <div className={styles.wrap__body__head}>
+          <p className={styles.wrap__body__head_title}>{item.title}</p>
+          <div className={`${styles.vertline} ${styles[urgency]}`}></div>
+          <p className={styles.wrap__body__head_category}>{item.category}</p>
+        </div>
+        <div className={`${styles.line} ${styles[urgency]}`}></div>
+        <div className={styles.wrap__body_content}>
+          <p>{item.content}</p>
+        </div>
+        <div className={`${styles.line} ${styles[urgency]}`}></div>
+        <div className={styles.wrap__body_date}>
+          <p className={styles.wrap__body_date_p}>
+            {item.isDone
+              ? "Completed!"
+              : `Created ${format(new Date(item.createdAt), "dd/MM/yy")}`}
+          </p>
+        </div>
       </div>
       {editOpen && (
         <AddModal closeModal={handleEdit} submit={editItem} item={item} />
