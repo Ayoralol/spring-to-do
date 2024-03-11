@@ -75,7 +75,8 @@ const AddModal: React.FC<AddModalProps> = ({closeModal, submit, item}) => {
           <Button
             handleClick={handleSubmit(onSubmit)}
             icon={faCheck}
-            border={"default"}></Button>
+            border={"default"}
+            testid={"modalBtn"}></Button>
         </form>
       </div>
       <Button

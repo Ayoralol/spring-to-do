@@ -18,7 +18,8 @@ function App() {
 
   const fetchData = useCallback(async () => {
     try {
-      const data = await getAllListItems();
+      let data = await getAllListItems();
+      data = data.sort((a: ListItem, b: ListItem) => b.id - a.id);
       setListItems(data);
     } catch (error) {
       console.warn(error);
@@ -47,7 +48,8 @@ function App() {
         <Button
           handleClick={handleClick}
           icon={faPlus}
-          border={"none"}></Button>
+          border={"none"}
+          testid={"addBtn"}></Button>
       </div>
       <List items={listItems} fetchData={fetchData} />
       {modalOpen && <AddModal closeModal={handleClick} submit={createItem} />}
