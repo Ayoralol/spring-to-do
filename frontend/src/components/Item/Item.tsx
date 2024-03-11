@@ -23,7 +23,7 @@ const Item: React.FC<ItemProps> = ({item, fetchData}) => {
   if (!item.isDone) {
     urgency = item.urgency;
   } else {
-    urgency = "gold";
+    urgency = "completed";
   }
 
   let position = "";
@@ -59,23 +59,28 @@ const Item: React.FC<ItemProps> = ({item, fetchData}) => {
   };
 
   return (
-    <div className={`${styles.wrap} ${styles[urgency]} ${styles[position]}`}>
+    <div
+      className={`${styles.wrap} ${styles[urgency]} ${styles[position]}`}
+      data-testid={"listItem"}>
       <div className={styles.wrap__btns}>
         {!item.isDone && (
           <Button
             handleClick={handleEdit}
             icon={faWrench}
-            border={urgency}></Button>
+            border={urgency}
+            testid={"editBtn"}></Button>
         )}
         <Button
           handleClick={handleDelete}
           icon={faTrash}
-          border={urgency}></Button>
+          border={urgency}
+          testid={"deleteBtn"}></Button>
         {!item.isDone && (
           <Button
             handleClick={handleComplete}
             icon={faCheck}
-            border={urgency}></Button>
+            border={urgency}
+            testid={"completeBtn"}></Button>
         )}
       </div>
       <div className={`${styles.line} ${styles[urgency]}`}></div>
